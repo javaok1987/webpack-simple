@@ -1,0 +1,41 @@
+// @charset 'utf-8';
+@import "~normalize.css";
+@import 'variables';
+@import 'mixin';
+@import 'base';
+// Components.
+body,
+html {
+  font-family: $body-font-family;
+  font-size: px2rem(16px); //1rem
+  font-weight: normal;
+  line-height: 1.8;
+  height: 100%;
+  margin: 0 auto;
+  word-wrap: break-word;
+  color: $color-white;
+}
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-width: px2rem(320px);
+  min-height: 100%;
+  background-color: #2B3A42;
+}
+
+.container {
+  width: 100%;
+  max-width: $main-width;
+  margin: 0 auto;
+  padding: px2rem(5px) px2rem(10px) 0;
+  text-align: center;
+}
+
+#app{
+  img{
+    width: px2rem(300px);
+    margin-top: px2rem(100px);
+  }
+}

@@ -1,0 +1,76 @@
+@import 'variables';
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: px2rem(32px)
+}
+
+h2 {
+  font-size: px2rem(30px);
+  line-height: 1.7em;
+}
+
+h3 {
+  font-size: px2rem(19px);
+  line-height: 1.6em;
+}
+
+h4 {
+  font-size: px2rem(19px);
+}
+
+h5 {
+  font-size: px2rem(16px);
+  line-height: 1.4em;
+}
+
+h6 {
+  font-size: px2rem(16px);
+  line-height: 1.4em;
+}
+
+a {
+  text-decoration: none;
+  background-color: inherit;
+}
+
+p {
+  line-height: px2rem(28px);
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.strong {
+  font-weight: $font-weight-bold;
+}
+
+.notice {
+  font-size: px2rem(13px);
+  padding-left: px2rem(5px);
+  color: $color-red;
+}
+
+.hide {
+  display: none !important;
+}
+
+
+/* 取消 focus 的虛線框 */
+*:focus,
+ :focus {
+  outline: 0;
+}
+
+a[href]:after {
+  display: none;
+}

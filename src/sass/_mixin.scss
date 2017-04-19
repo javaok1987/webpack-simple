@@ -1,0 +1,28 @@
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+$base-font-size: 16px !default;
+@function px2rem($target-size, $context: $base-font-size) {
+  @if not unitless($target-size) {
+    $target-size: strip-units($target-size);
+  }
+  @if not unitless($context) {
+    $context: strip-units($context);
+  }
+  @return ($target-size / $context) * 1rem;
+}
+
+@mixin text-hide {
+  white-space: nowrap;
+  text-indent: 100%;
+  overflow: hidden;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
