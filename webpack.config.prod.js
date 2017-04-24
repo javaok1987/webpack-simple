@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // 定義文件路徑.
 const ROOT_PATH = path.resolve(__dirname);
@@ -73,6 +74,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']), // 清除 bundle 後的資料夾.
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
