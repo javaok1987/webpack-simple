@@ -1,8 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // 定義文件路徑.
 const ROOT_PATH = path.resolve(__dirname);
@@ -63,7 +64,11 @@ module.exports = {
       exclude: [/node_modules/],
       loader: ExtractTextPlugin.extract({ // 匯出css檔案
         fallback: 'style-loader',
-        use: 'css-loader!sass-loader'
+        use: [
+            'css-loader', // 解析 CSS 轉換成 Javascript 同時解析相依的資源.
+            'postcss-loader',
+            'sass-loader' // 編譯 Sass 成為 CSS.
+          ]
       }),
     },
     {
@@ -74,6 +79,20 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+      options: {
+        postcss: [
+          autoprefixer({
+            browsers: [
+              'last 3 version',
+              'ie >= 10',
+            ],
+          }),
+        ]
+      }
+    }),
     new CleanWebpackPlugin(['dist']), // 清除 bundle 後的資料夾.
     new webpack.optimize.UglifyJsPlugin({
       compress: {

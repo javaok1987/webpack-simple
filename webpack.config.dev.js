@@ -1,7 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const Dashboard = require('webpack-dashboard');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const dashboard = new Dashboard();
@@ -66,6 +67,7 @@ module.exports = {
       use: [
         'style-loader', // 輸出 CSS 到 document 的 <style> 元素內.
         'css-loader', // 解析 CSS 轉換成 Javascript 同時解析相依的資源.
+        'postcss-loader',
         'sass-loader' // 編譯 Sass 成為 CSS.
       ]
     },
@@ -80,6 +82,18 @@ module.exports = {
     contentBase: APP_PATH
   },
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          autoprefixer({
+            browsers: [
+              'last 3 version',
+              'ie >= 10',
+            ],
+          }),
+        ]
+      }
+    }),
     new webpack.NamedModulesPlugin(),
     new DashboardPlugin(dashboard.setData),
     new webpack.ProvidePlugin({ // 告訴webpack看到$就自動requre('jquery')
